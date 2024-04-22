@@ -1,0 +1,20 @@
+
+
+#hlemchart - app
+
+hlem install web /webapp - starts app in helm chart
+if u are using minikube then u probably will need to port forward app service
+in order to do that u need to run:
+1 kubectl get svc - find right service name
+2 minikube service service_name - this will give u new url
+
+there is also kubernetes folder with properties for running app.py without helm chart
+
+
+#Locust
+
+in file locusthelm there is configuration for locust however 
+its much easier to just use this command to run locust locally:
+docker run -p 8089:8089 --mount type=bind,source=$pwd,target=/mnt/locust locustio/locust -f /mnt/locust/locustfile.py
+
+
