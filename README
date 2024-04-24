@@ -1,20 +1,33 @@
+#Python
+
+app.py is a web app that uses flask mostly for simplicity
+
+in order to get reqest back with transferred farenheits to celsius just type <pageUrl>/<any number in float>
+for example: localhost:8080/55.0
 
 
 #hlemchart - app
 
 hlem install web /webapp - starts app in helm chart
+
 if u are using minikube then u probably will need to port forward app service
 in order to do that u need to run:
-1 kubectl get svc - find right service name
-2 minikube service service_name - this will give u new url
+1. kubectl get svc - find right service name
+2. minikube service service_name - this will give u new url
 
-there is also kubernetes folder with properties for running app.py without helm chart
+there is also kubernetes folder with properties for running app.py in kubernetes without helm chart
 
 
 #Locust
 
-in file locusthelm there is configuration for locust however 
-its much easier to just use this command to run locust locally:
+in file locusthelm there is configuration for locust 
+
+however its much easier to just use this command to run locust locally in docker:
 docker run -p 8089:8089 --mount type=bind,source=$pwd,target=/mnt/locust locustio/locust -f /mnt/locust/locustfile.py
 
+There is also ready respository with prepared locust in helm chart
 
+Add Chart Repository to Helm
+helm repo add deliveryhero https://charts.deliveryhero.io/
+Install Chart
+helm install my-locust deliveryhero/locust --version 0.26.1
